@@ -5,30 +5,9 @@ import 'package:provider/provider.dart';
 import 'package:tabbar_gradient_indicator/tabbar_gradient_indicator.dart';
 import 'ProviderClass.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
-
-late AppOpenAd appOpenAd;
-
-Future<void> LoadAd() async {
-  await AppOpenAd.load(
-      adUnitId: 'ca-app-pub-2649758662056392/7639014659',
-      request: AdRequest(),
-      adLoadCallback: AppOpenAdLoadCallback(onAdLoaded: (ad) {
-        appOpenAd = ad;
-        appOpenAd.show();
-
-        print("loaded");
-      }, onAdFailedToLoad: (ad) {
-        print("failed to load");
-      }),
-      orientation: AppOpenAd.orientationPortrait);
-}
 
 
 void main() async {
-
-  LoadAd();
-
   runApp(MultiProvider(
     providers: [ChangeNotifierProvider(create: (_) => ClassProvider())],
     child: MaterialApp(
@@ -52,6 +31,7 @@ class _CategoriesState extends State<Categories> {
     context.read<ClassProvider>().LoadBannerad();
     context.read<ClassProvider>().LoadInterTialAds();
     context.read<ClassProvider>().FechApi();
+    context.read<ClassProvider>().LoadAd();
 
     super.initState();
   }
@@ -72,6 +52,7 @@ class _CategoriesState extends State<Categories> {
             child: TabBar(
               onTap: (value) {
                 todo.SelectedMode(value);
+                todo.ShowIntertiial();
 
               },
               automaticIndicatorColorAdjustment: true,

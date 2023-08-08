@@ -23,6 +23,22 @@ class ClassProvider extends ChangeNotifier {
   int selectedmode = 0;
   List list = [];
 
+  late AppOpenAd appOpenAd;
+
+  Future<void> LoadAd() async {
+    await AppOpenAd.load(
+        adUnitId: 'ca-app-pub-2649758662056392/7639014659',
+        request: AdRequest(),
+        adLoadCallback: AppOpenAdLoadCallback(onAdLoaded: (ad) {
+          appOpenAd = ad;
+          appOpenAd.show();
+
+          print("loaded");
+        }, onAdFailedToLoad: (ad) {
+          print("failed to load");
+        }),
+        orientation: AppOpenAd.orientationPortrait);
+  }
 
 
   InterstitialAd? interstitialAd;
