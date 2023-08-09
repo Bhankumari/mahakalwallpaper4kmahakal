@@ -18,7 +18,7 @@ class ClassProvider extends ChangeNotifier {
   String amimate="False";
   int? selectedindex;
 
-
+  int ? selectedmodeindex;
   String? loading = "False";
   int selectedmode = 0;
   List list = [];
@@ -125,6 +125,12 @@ class ClassProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+
+  LengthPattalaune(String index) {
+    List list = result[index];
+    selectedmodeindex = list.length;
+    notifyListeners();
+  }
 
 
 

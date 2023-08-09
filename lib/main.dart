@@ -45,7 +45,7 @@ class _CategoriesState extends State<Categories> {
                   child: TabBar(
                     onTap: (value) {
                       todo.SelectedMode(value);
-                      todo.ShowIntertiial();
+                      todo.LengthPattalaune(todo.images[value]);
                     },
                     automaticIndicatorColorAdjustment: true,
                     enableFeedback: true,
@@ -103,7 +103,7 @@ class _CategoriesState extends State<Categories> {
                           child: ListView.builder(
                               shrinkWrap: true,
                               controller: todo.controller,
-                              itemCount: todo.images.length,
+                              itemCount: todo.selectedmodeindex,
                               itemBuilder: (BuildContext, index) {
                                 return Container(
                                   child: Column(
