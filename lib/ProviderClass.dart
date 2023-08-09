@@ -172,7 +172,7 @@ class ClassProvider extends ChangeNotifier {
 
       if (progressString == "100%") {
 
-        ShowIntertiial();
+
 
         Flushbar(
           flushbarPosition: FlushbarPosition.TOP,
@@ -182,9 +182,14 @@ class ClassProvider extends ChangeNotifier {
             size: 28.0,
             color: Colors.green[300],
           ),
-          duration: Duration(seconds: 3),
+          duration: Duration(seconds: 2),
           leftBarIndicatorColor: Colors.green[300],
         )..show(context);
+
+        Future.delayed(Duration(seconds: 3),(){
+          ShowIntertiial();
+        });
+
 
       }
       notifyListeners();
@@ -208,7 +213,7 @@ class ClassProvider extends ChangeNotifier {
           name: postid);
 
       if (progressString == "100%") {
-        ShowIntertiial();
+
 
         Flushbar(
           flushbarPosition: FlushbarPosition.TOP,
@@ -218,9 +223,14 @@ class ClassProvider extends ChangeNotifier {
             size: 28.0,
             color: Colors.green[300],
           ),
-          duration: Duration(seconds: 3),
+          duration: Duration(seconds: 2),
           leftBarIndicatorColor: Colors.green[300],
         )..show(context);
+
+        Future.delayed(Duration(seconds: 3),(){
+          ShowIntertiial();
+        });
+
 
       }
     }
