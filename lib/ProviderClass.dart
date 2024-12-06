@@ -5,10 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:http/http.dart' as http;
 import 'package:dio/dio.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:image_gallery_saver_plus/image_gallery_saver_plus.dart';
+// import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:uuid/uuid.dart';
 import 'package:another_flushbar/flushbar.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
+// import 'package:google_mobile_ads/google_mobile_ads.dart';
 class ClassProvider extends ChangeNotifier {
 
   final ScrollController controller = ScrollController();
@@ -22,100 +23,100 @@ class ClassProvider extends ChangeNotifier {
   String? loading = "False";
   int selectedmode = 0;
   List list = [];
-
-  late AppOpenAd appOpenAd;
-
-  Future<void> LoadAd() async {
-    await AppOpenAd.load(
-        adUnitId: 'ca-app-pub-2649758662056392/7639014659',
-        request: AdRequest(),
-        adLoadCallback: AppOpenAdLoadCallback(onAdLoaded: (ad) {
-          appOpenAd = ad;
-          appOpenAd.show();
-
-          print("loaded");
-        }, onAdFailedToLoad: (ad) {
-          print("failed to load");
-        }),
-        orientation: AppOpenAd.orientationPortrait);
-  }
-
-
-  InterstitialAd? interstitialAd;
-
-  final BannerAd bannerAd = BannerAd(
-      size: AdSize.banner,
-      adUnitId: 'ca-app-pub-2649758662056392/1265177990',
-      listener: BannerAdListener(onAdClosed: (Ad ad) {
-        print("Ad Closed");
-      }, onAdFailedToLoad: (Ad ad, LoadAdError error) {
-        ad.dispose();
-      }, onAdLoaded: (Ad ad) {
-        print('Ad Loaded');
-      }, onAdOpened: (Ad ad) {
-        print('Ad opened');
-      }),
-      request: AdRequest());
-
-  late AdWidget adWidget;
+  //
+  // late AppOpenAd appOpenAd;
+  //
+  // Future<void> LoadAd() async {
+  //   await AppOpenAd.load(
+  //       adUnitId: 'ca-app-pub-2649758662056392/7639014659',
+  //       request: AdRequest(),
+  //       adLoadCallback: AppOpenAdLoadCallback(onAdLoaded: (ad) {
+  //         appOpenAd = ad;
+  //         appOpenAd.show();
+  //
+  //         print("loaded");
+  //       }, onAdFailedToLoad: (ad) {
+  //         print("failed to load");
+  //       }),
+  //       orientation: AppOpenAd.orientationPortrait);
+  // }
 
 
-
-
-
-  LoadBannerad(){
-    adWidget = AdWidget(ad: bannerAd);
-    bannerAd..load();
-  }
-
-  LoadInterTialAds(){
-    InterstitialAd.load(
-        adUnitId: 'ca-app-pub-2649758662056392/2362637243',
-        request: AdManagerAdRequest(),
-        adLoadCallback: InterstitialAdLoadCallback(
-          onAdLoaded: (InterstitialAd ad) {
-            interstitialAd = ad;
-            interstitialAd!.setImmersiveMode(true);
-          },
-          onAdFailedToLoad: (LoadAdError error) {
-            print('InterstitialAd failed to load: $error.');
-          },
-        ));
-
-
-  }
-
-  ShowIntertiial() {
-
-    interstitialAd!.show();
-    interstitialAd!.fullScreenContentCallback = FullScreenContentCallback(
-      onAdShowedFullScreenContent: (InterstitialAd ad) =>
-          print('%ad onAdShowedFullScreenContent.'),
-      onAdDismissedFullScreenContent: (InterstitialAd ad) {
-        ad.dispose();
-
-        InterstitialAd.load(
-            adUnitId: 'ca-app-pub-2649758662056392/2362637243',
-            request: AdManagerAdRequest(),
-            adLoadCallback: InterstitialAdLoadCallback(
-              onAdLoaded: (InterstitialAd ad) {
-                interstitialAd = ad;
-                interstitialAd!.setImmersiveMode(true);
-              },
-              onAdFailedToLoad: (LoadAdError error) {
-                print('InterstitialAd failed to load: $error.');
-                interstitialAd = null;
-              },
-            ));
-      },
-      onAdFailedToShowFullScreenContent: (InterstitialAd ad, AdError error) {
-        print('$ad onAdFailedToShowFullScreenContent: $error');
-        ad.dispose();
-      },
-      onAdImpression: (InterstitialAd ad) => print('$ad impression occurred.'),
-    );
-  }
-
+  // InterstitialAd? interstitialAd;
+  //
+  // final BannerAd bannerAd = BannerAd(
+  //     size: AdSize.banner,
+  //     adUnitId: 'ca-app-pub-2649758662056392/1265177990',
+  //     listener: BannerAdListener(onAdClosed: (Ad ad) {
+  //       print("Ad Closed");
+  //     }, onAdFailedToLoad: (Ad ad, LoadAdError error) {
+  //       ad.dispose();
+  //     }, onAdLoaded: (Ad ad) {
+  //       print('Ad Loaded');
+  //     }, onAdOpened: (Ad ad) {
+  //       print('Ad opened');
+  //     }),
+  //     request: AdRequest());
+  //
+  // late AdWidget adWidget;
+  //
+  //
+  //
+  //
+  //
+  // LoadBannerad(){
+  //   adWidget = AdWidget(ad: bannerAd);
+  //   bannerAd..load();
+  // }
+  //
+  // LoadInterTialAds(){
+  //   InterstitialAd.load(
+  //       adUnitId: 'ca-app-pub-2649758662056392/2362637243',
+  //       request: AdManagerAdRequest(),
+  //       adLoadCallback: InterstitialAdLoadCallback(
+  //         onAdLoaded: (InterstitialAd ad) {
+  //           interstitialAd = ad;
+  //           interstitialAd!.setImmersiveMode(true);
+  //         },
+  //         onAdFailedToLoad: (LoadAdError error) {
+  //           print('InterstitialAd failed to load: $error.');
+  //         },
+  //       ));
+  //
+  //
+  // }
+  //
+  // ShowIntertiial() {
+  //
+  //   interstitialAd!.show();
+  //   interstitialAd!.fullScreenContentCallback = FullScreenContentCallback(
+  //     onAdShowedFullScreenContent: (InterstitialAd ad) =>
+  //         print('%ad onAdShowedFullScreenContent.'),
+  //     onAdDismissedFullScreenContent: (InterstitialAd ad) {
+  //       ad.dispose();
+  //
+  //       InterstitialAd.load(
+  //           adUnitId: 'ca-app-pub-2649758662056392/2362637243',
+  //           request: AdManagerAdRequest(),
+  //           adLoadCallback: InterstitialAdLoadCallback(
+  //             onAdLoaded: (InterstitialAd ad) {
+  //               interstitialAd = ad;
+  //               interstitialAd!.setImmersiveMode(true);
+  //             },
+  //             onAdFailedToLoad: (LoadAdError error) {
+  //               print('InterstitialAd failed to load: $error.');
+  //               interstitialAd = null;
+  //             },
+  //           ));
+  //     },
+  //     onAdFailedToShowFullScreenContent: (InterstitialAd ad, AdError error) {
+  //       print('$ad onAdFailedToShowFullScreenContent: $error');
+  //       ad.dispose();
+  //     },
+  //     onAdImpression: (InterstitialAd ad) => print('$ad impression occurred.'),
+  //   );
+  // }
+  //
 
 
 
@@ -171,10 +172,19 @@ class ClassProvider extends ChangeNotifier {
       String id = Uuid().v4();
 
 
-      ImageGallerySaver.saveImage(
+     await Dio().get(
+          image,
+          options: Options(responseType: ResponseType.bytes));
+      final result = await ImageGallerySaverPlus.saveImage(
           Uint8List.fromList(response.data),
-          quality: 100,
+          quality: 60,
           name: id);
+      print(result);
+
+      // ImageGallerySaver.saveImage(
+      //     Uint8List.fromList(response.data),
+      //     quality: 100,
+      //     name: id);
 
       if (progressString == "100%") {
 
@@ -193,7 +203,7 @@ class ClassProvider extends ChangeNotifier {
         )..show(context);
 
         Future.delayed(Duration(seconds: 3),(){
-          ShowIntertiial();
+          // ShowIntertiial();
         });
 
 
@@ -212,11 +222,24 @@ class ClassProvider extends ChangeNotifier {
           options: Options(
             responseType: ResponseType.bytes,
           ));
-      String postid = Uuid().v4();
-      ImageGallerySaver.saveImage(
+      String id = Uuid().v4();
+
+
+      await Dio().get(
+          image,
+          options: Options(responseType: ResponseType.bytes));
+      final result = await ImageGallerySaverPlus.saveImage(
           Uint8List.fromList(response.data),
-          quality: 100,
-          name: postid);
+          quality: 60,
+          name: id);
+      print(result);
+
+
+
+      // ImageGallerySaver.saveImage(
+      //     Uint8List.fromList(response.data),
+      //     quality: 100,
+      //     name: postid);
 
       if (progressString == "100%") {
 
@@ -234,7 +257,7 @@ class ClassProvider extends ChangeNotifier {
         )..show(context);
 
         Future.delayed(Duration(seconds: 3),(){
-          ShowIntertiial();
+          // ShowIntertiial();
         });
 
 

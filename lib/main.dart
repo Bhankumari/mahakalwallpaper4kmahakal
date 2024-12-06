@@ -24,10 +24,10 @@ class Categories extends StatefulWidget {
 class _CategoriesState extends State<Categories> {
   @override
   void initState() {
-    context.read<ClassProvider>().LoadBannerad();
-    context.read<ClassProvider>().LoadInterTialAds();
+    // context.read<ClassProvider>().LoadBannerad();
+    // context.read<ClassProvider>().LoadInterTialAds();
     context.read<ClassProvider>().FechApi();
-    context.read<ClassProvider>().LoadAd();
+    // context.read<ClassProvider>().LoadAd();
 
     super.initState();
   }
@@ -233,10 +233,10 @@ class _CategoriesState extends State<Categories> {
                         ),
                       ),
                     ),
-                    Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: todo.bannerAd.size.height.toDouble(),
-                        child: todo.adWidget),
+                    // Container(
+                    //     width: MediaQuery.of(context).size.width,
+                    //     height: todo.bannerAd.size.height.toDouble(),
+                    //     child: todo.adWidget),
                     Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.07,
